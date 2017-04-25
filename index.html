@@ -9,13 +9,13 @@
     <link rel="stylesheet" href="css/style.css">
 
     <script type="text/javascript" src="/js/phaser/phaser.min.js"></script>
-		<script type="text/javascript" src="/js/phaser/game.js"></script>
+    <script type="text/javascript" src="/js/phaser/game.js"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-	     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
-	     <meta name="HandheldFriendly" content="true" />
-	     <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="mobile-web-app-capable" content="yes" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -23,79 +23,66 @@
 
 <body>
     <div class="row">
-      <div class="container col s12 m4">
-          <h2 class="teal-text text-lighten-2 center">Analizador</h2>
-          <div class="row">
-              <form class="col s12">
-                  <div class="row">
-                      <div class="input-field col s12">
-                        <!-- <div contenteditable="true" id="textarea1" class="context" style="padding-left: 35px; padding-top: 10px;" ></div>  -->
-                        <textarea id="textarea1"  style="padding-left: 35px; padding-top: 10px;"></textarea>
-                      </div>
-                  </div>
-              </form>
-              <div class="row">
-                <center>
-                <button class="btn waves-effect waves-light" onclick="analyze()">Análisis léxico
-                  <i class="material-icons right">send</i>
-                </button>
-              </center>
-              </div>
+        <div class="container col s12 m4">
+            <h2 class="teal-text text-lighten-2 center">Analizador</h2>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <!-- <div contenteditable="true" id="textarea1" class="context" style="padding-left: 35px; padding-top: 10px;" ></div>  -->
+                            <textarea id="textarea1"  style="padding-left: 35px; padding-top: 10px;"></textarea>
+                        </div>
+                    </div>
+                </form>
+                <div class="row">
+                    <center>
+                        <button class="btn waves-effect waves-light" onclick="analyze()">Análisis léxico
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </center>
+                </div>
 
-              <div class="row">
-                <center>
-                <button class="btn waves-effect waves-light" onclick="program()">Análisis sintáctico
-                    <i class="material-icons right">send</i>
+                <div class="row">
+                    <center>
+                        <button class="btn waves-effect waves-light" onclick="program()">Análisis sintáctico
+                            <i class="material-icons right">send</i>
 
-                </button>
-              </center>
-              </div>
+                        </button>
+                    </center>
+                </div>
 
 
-              <div class="row">
-                <center>
-                <button class="btn waves-effect waves-light" onclick="leerCodigoIntermedio()">Leer código intermedio
-                    <i class="material-icons right">send</i>
 
-                </button>
-              </center>
-              </div>
 
-              <div class="row">
-                <center>
-                <button class="btn waves-effect waves-light" onclick="programa()">Generar de código intermedio
-                    <i class="material-icons right">send</i>
+                <div class="row">
+                    <center>
+                        <button class="btn waves-effect waves-light" onclick="execute()">Análisis semántico y ejecución
+                            <i class="material-icons right">send</i>
 
-                </button>
-              </center>
-              </div>
+                        </button>
+                    </center>
+                </div>
 
-              <div class="row">
-                <center>
-                <button class="btn waves-effect waves-light" onclick="execute()">Análisis semántico y ejecución
-                    <i class="material-icons right">send</i>
-
-                </button>
-              </center>
-              </div>
-
-              <form class="col s12 m8">
-                  <div class="row">
-                      <div id="feedback" class="input-field col s12">
-                        <div  id="feedbackText" class="context" style="padding-left: 35px; padding-top: 10px;" ></div>
-                      </div>
-                  </div>
-              </form>
-          </div>
-
-      </div>
-      <div class="container col s12 m6">
-        <h2 class="teal-text text-lighten-2 center">Demostración</h2>
-        <div id="phaser-cards"></div>
-        <div class="row">
-          <div id="phaser-cards"></div>
+                <form class="col s12 m8">
+                    <div class="row">
+                        <div id="feedback" class="input-field col s12">
+                            <div  id="feedbackText" class="context" style="padding-left: 35px; padding-top: 10px;" ></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
+
+        <div class="container col s12 m8">
+            <h2 class="teal-text text-lighten-2 center">Demostración</h2>
+            <center>
+
+            <div class="row">
+                <as id="phaser-cards"></as>
+            </center>
+
+            </div>
+        </div>
     </div>
 
 

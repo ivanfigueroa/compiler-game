@@ -35,12 +35,16 @@
 var currentCard;
 var retStack;
 var decks;
-
+var isStarted;
 
 function init(){
     //this.game.state.start("the_state_name");
     //playGame.prototype.restart();
     //game.state.restart();
+    //playGame.prototype.create(currentCard);
+
+    game.state.start("PlayGame");
+    isStarted =true;
     currentCard = -1;
     retStack = new Array();
     decks = new Array();
@@ -325,7 +329,7 @@ function loop (i){
 
             }
             loop (i);
-        }, 100)
+        }, 1)
 
     }else {
         return;
@@ -334,6 +338,8 @@ function loop (i){
 
 function execute(){
     var i = 0;
+    programa(false);
+    if(isStarted)game.state.start("PlayGame");
     init();
     loop(i);
 

@@ -14,3 +14,17 @@ textarea{
     height: 450px;
 }
 
+/*center canvas*/
+/*canvas { background: black;     top: 1%;     left: 1%;     }  }
+#zip {     top: 50%;     left: 200px;     position: absolute;}
+#container {     top: 5%;     left: 300px;     position: absolute;}
+*/
+canvas {
+    height: 700px;
+    width: 900px;
+    background:black;
+    left: 35%;
+    position: absolute;
+ }
+#zip {     top: 50%;     left: 200px;     position: absolute;}
+#container {     top: 90%;     left: 50%;     position: absolute;}

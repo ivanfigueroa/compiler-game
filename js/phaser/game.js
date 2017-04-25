@@ -1,11 +1,11 @@
 var game;
 var flags = [];
 var gameOptions = {
-    gameWidth: 800 ,
-    gameHeight: 800,
+    gameWidth: 900 ,
+    gameHeight:700,
     cardSheetWidth: 334,
     cardSheetHeight: 440,
-    cardScale: 0.2
+    cardScale: 0.17
 }
 var deck,
     deckXPosition,
@@ -24,13 +24,8 @@ window.onload = function() {
         this._construct();
     }
 
-    /*game.prototype = {    _game,
-         _construct: function(){
-             this._game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, "phaser-cards");
-         },
-         phaserFunction: function(){       //do the thing    }}var game = new Game();//Now you can do this anywhere you want.game.phaserFunction();*/
 
-    game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, "phaser-cards");
+    game = new Phaser.Game(gameOptions.gameWidth, gameOptions.gameHeight, Phaser.CANVAS, "phaser-cards");
 
     game.state.add("PlayGame", playGame)
     game.state.start("PlayGame");
@@ -40,12 +35,14 @@ playGame.prototype = {
     preload: function() {
         game.load.spritesheet("cards", "assets/deck.png", gameOptions.cardSheetWidth, gameOptions.cardSheetHeight);
         game.load.image("back" , "assets/back.png");
+        game.load.image("background", "assets/background.jpg");
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
     },
     create: function() {
-        game.stage.backgroundColor = "#477148";
+         game.stage.backgroundColor = "#7A2F36";
+        //game.add.tileSprite(0, 0, 800, 700, 'background');
         deck = Phaser.ArrayUtils.numberArray(0, 51); //create array
         Phaser.ArrayUtils.shuffle(deck);    //randomize order
         deckXPosition = this.makeXcoordinates(7);
@@ -53,7 +50,7 @@ playGame.prototype = {
         cardsInGame = this.makeCards();    // initialize 2 cards?
         nextCardIndex = 51;
         deckIndex = 1;
-        game.input.onDown.add(this.beginSwipe, this);
+        //game.input.onDown.add(this.beginSwipe, this);
     },
     makeCards: function() {
         var cards = [];
@@ -71,8 +68,8 @@ playGame.prototype = {
         card.anchor.set(0.5);
         card.scale.set(gameOptions.cardScale);
         //card.frame = deck[cardIndex];
-        card.inputEnabled = true;
-        card.input.enableDrag(true);
+        //card.inputEnabled = true;
+        //card.input.enableDrag(true);
         deckbueno[cardIndex] = deck[cardIndex];
         card.frame = 52;
         return card;

@@ -34,19 +34,19 @@ var index       = 0,
     NOTCLUBS    = 1032,
     NOTDIAMOND  = 1033,
     NOTSPADES   = 1034;
-    
-    
-    
-    
-/*var printValue = ["INICIO_PROG", "IF", "WHILE", "ITERATE", "RETURN", "JMP", "FIN", "FLIP", "GETCARD", "PUTCARD", "CUSTOM", "CALL", 
-                "RET", "FINAL", "SMALLER", "BIGGER","SMALLEREQ" , "BIGGEREQ", "EQUAL","NOTEQUAL", "ISNOTEMPTY", "ISEMPTY", 
-                "ISRED", "ISBLACK", "ISHEART", "ISCLUBS", "ISDIAMOND", "ISSPADES", "NOTRED", "NOTBLACK", "NOTHEART", "NOTCLUBS", "NOTDIAMOND", 
+
+
+
+
+/*var printValue = ["INICIO_PROG", "IF", "WHILE", "ITERATE", "RETURN", "JMP", "FIN", "FLIP", "GETCARD", "PUTCARD", "CUSTOM", "CALL",
+                "RET", "FINAL", "SMALLER", "BIGGER","SMALLEREQ" , "BIGGEREQ", "EQUAL","NOTEQUAL", "ISNOTEMPTY", "ISEMPTY",
+                "ISRED", "ISBLACK", "ISHEART", "ISCLUBS", "ISDIAMOND", "ISSPADES", "NOTRED", "NOTBLACK", "NOTHEART", "NOTCLUBS", "NOTDIAMOND",
                 "NOTSPADES"];*/
-    
+
 
 var stack = new Array();
-var codIntermedio = new Array(); 
-var simbolTable = new Array(); 
+var codIntermedio = new Array();
+var simbolTable = new Array();
 var simbolTableStackIndex = new Array();
 var StackForMain = 0;
 var k = 0; //index for codIntermedio Array
@@ -69,7 +69,7 @@ function verificar(x){
 }
 
 //<program> ::= "class" "program" "{" <functions> <main function> "}"
-function programa(){
+function programa(printMessage){
     getInput();
     stack = new Array();
     codIntermedio = new Array();
@@ -83,7 +83,7 @@ function programa(){
     	    codIntermedio.push(JMP);
     	    k++;
     	    codIntermedio.push(-1);
-    	    k++; 
+    	    k++;
     	    if ( verificar( "void" ) ) {
     			functions();
     		}
@@ -106,6 +106,7 @@ function programa(){
   codIntermedio.push(FINAL);
   var message = "Lo que tiene el stack: \n";
   var codeToPrint;
+  if(printMessage){
   for(var i = 0 ; i< codIntermedio.length ; i++){
       codeToPrint=codIntermedio[i];
      // if(codeToPrint>1000)  codeToPrint= printValue[codeToPrint-1001];
@@ -114,7 +115,8 @@ function programa(){
       message+=(i + "**"+codeToPrint+"**\n");
   }
   alert(message);
-  
+  }
+
 }
 
 //<functions> ::= <function> <functions alpha> | LAMBDA
@@ -129,7 +131,7 @@ function functions_alpha() {
   if ( verificar( "void" ) ) {
 	single_function();
 	functions_alpha();
-	
+
   }
 }
 
@@ -203,7 +205,7 @@ function body_alpha(){
         expression();
         body_alpha();
     }
-    
+
 }
 
 // <expression> ::= <call function> |<if expression> |<while expression> |<iterate expression>
@@ -287,10 +289,10 @@ function customer_function(){
          codIntermedio.push(simbolTableStackIndex[simbolTable.indexOf(tokensArray[index])]+1);
          k++;
      }
-         
+
     index++;
 
- 
+
 }
 
 // <if expression> ::= "if" ( <conditional> ) "{" <body> "}"  <elseif>
@@ -369,7 +371,7 @@ function while_expression(){
                    codIntermedio[stack.pop()] = k + 1;
                    codIntermedio.push(stack.pop());
                    k++;
-                  
+
                    if ( !exigir( "}" ) ) {
 		               alert("} is missing");
 		           }
@@ -548,7 +550,7 @@ function deck_simple_condition(){
         if(verificar("isEmpty")){
            exigir("isEmpty");
             codIntermedio.push(ISEMPTY);
-            k++; 
+            k++;
         }
         if(verificar("isNotEmpty")){
              exigir("isNotEmpty");

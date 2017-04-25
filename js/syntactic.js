@@ -1,7 +1,7 @@
 /*global getInput*/
 /*global tokensArray*/
 var index = 0;
-
+var isCorrect=true;
 
 //exigir
 function exigir(x){
@@ -30,19 +30,27 @@ function program(){
     		main_function();
     		if ( !exigir("}") ) {
     		  alert("} is missing");
+              isCorrect=false;
+
     		}
     	  }
     	  else {
     	    alert("{ is missing");
+            isCorrect=false;
     	  }
     	}
     	else {
     	  alert("program is missing");
+          isCorrect=false;
     	}
   }
   else {
      alert("class is missing");
+     isCorrect=false;
   }
+
+  if(isCorrect)
+  alert("No hay errores");
 }
 
 //<functions> ::= <function> <functions alpha> | LAMBDA
@@ -69,18 +77,23 @@ function main_function(){
                   body();
                   if ( !exigir( "}" ) ) {
 		            alert("} is missing");
+                    isCorrect=false;
 		          }
               } else{
                  alert("{ missing")
+                 isCorrect=false;
               }
           } else{
               alert(") missing");
+              isCorrect=false;
           }
        } else{
            alert("( missing");
+           isCorrect=false;
        }
     }else{
         alert("program missing");
+        isCorrect=false;
     }
 }
 
@@ -94,18 +107,23 @@ function single_function() {
 	      body();
 	      if ( !exigir( "}" ) ) {
 		   alert("} is missing");
+           isCorrect=false;
 		  }
 		} else {
 		  alert("{ is missing");
+          isCorrect=false;
 		}
 	  } else {
 	   alert(") is missing")
+       isCorrect=false;
 	  }
 	} else {
 	  alert("( is missing")
+      isCorrect=false;
 	}
   } else {
    alert("void is missing");
+   isCorrect=false;
   }
 }
 
@@ -122,7 +140,7 @@ function body_alpha(){
         expression();
         body_alpha();
     }
-    
+
 }
 
 // <expression> ::= <call function> |<if expression> |<while expression> |<iterate expression>
@@ -165,9 +183,11 @@ function official_function(){
             number_of_deck();
             if(!exigir(")")){
                 alert(") is missing");
+                isCorrect=false;
             }
         }else{
             alert("( is missing");
+            isCorrect=false;
         }
     } else if(verificar("putCard")){
         exigir("putCard");
@@ -175,9 +195,11 @@ function official_function(){
            number_of_deck();
            if(!exigir(")")){
                 alert(") is missing");
+                isCorrect=false;
             }
         }else{
             alert("( is missing");
+            isCorrect=false;
         }
     }
 }
@@ -187,6 +209,7 @@ function official_function(){
 function customer_function(){
      if(terminales.indexOf(tokensArray[index]) != -1){
          alert("Not a valid name");
+         isCorrect=false;
      }
      index++;
 }
@@ -203,18 +226,23 @@ function if_expression(){
             		   elseif();
             		}else{
             		    alert("} is missing");
+                        isCorrect=false;
             		}
                 }else{
                     alert("{ is missing");
+                    isCorrect=false;
                 }
             }else{
                 alert(") is missing");
+                isCorrect=false;
             }
         }else{
             alert("( is missing");
+            isCorrect=false;
         }
     }else{
         alert("if is missing");
+        isCorrect=false;
     }
 }
 
@@ -226,9 +254,11 @@ function elseif(){
             body();
             if ( !exigir( "}" ) ) {
 		        alert("} is missing");
+                isCorrect=false;
 		    }
         }else{
             alert("{ is missing");
+            isCorrect=false;
         }
     }
 }
@@ -243,18 +273,23 @@ function while_expression(){
                    body();
                    if ( !exigir( "}" ) ) {
 		               alert("} is missing");
+                       isCorrect=false;
 		           }
                }else{
                    alert("{ is missing");
+                   isCorrect=false;
                }
            }else{
                alert(") is missing");
+               isCorrect=false;
            }
        }else{
             alert("( is missing");
+            isCorrect=false;
        }
    }else{
        alert("while is missing");
+       isCorrect=false;
    }
 }
 
@@ -269,18 +304,23 @@ function iterate_expression(){
                     body();
                     if ( !exigir( "}" ) ) {
 		               alert("} is missing");
+                       isCorrect=false;
 		           }
                 }else{
                     alert("{ is missing");
+                    isCorrect=false;
                 }
             }else{
                 alert(") is missing");
+                isCorrect=false;
             }
         }else{
             alert("( is missing");
+            isCorrect=false;
         }
     }else{
         alert("iterate is missing");
+        isCorrect=false;
     }
 }
 
@@ -307,6 +347,7 @@ function number(){
     }
     if(i > 13){
         alert("number is not between 1 - 13");
+        isCorrect=false;
     }
     exigir(i);
 }
@@ -321,6 +362,7 @@ function number_of_deck(){
     }
     if(i > 52){
         alert("number of deck is not between 0 - 52");
+        isCorrect=false;
     }
     exigir(i);
 }
@@ -333,6 +375,7 @@ function card_compose_condition(){
         number();
     }else{
         alert("VALUE is missing");
+        isCorrect=false;
     }
 }
 
@@ -355,6 +398,7 @@ function operator(){
     }
     if(isError){
         alert("operator is not valid");
+        isCorrect=false;
     }
     exigir(operators[i]);
 }
@@ -387,6 +431,7 @@ function card_simple_condition(){
     }
     if(isError){
         alert("simple condition is not valid");
+        isCorrect=false;
     }
     exigir(simpleConditions[i]);
 }
@@ -398,21 +443,22 @@ function deck_simple_condition(){
     if(verificar("isEmpty") || verificar("isNotEmpty")){
         if(verificar("isEmpty"))
             exigir("isEmpty");
-        if(verificar("isNotEmpty")) 
+        if(verificar("isNotEmpty"))
             exigir("isNotEmpty");
         if(exigir("(")){
             number_of_deck();
             if(!exigir(")")){
                 alert(") is missing");
+                isCorrect=false;
             }
         }
         else{
             alert("(  is missing");
+            isCorrect=false;
         }
     }
     else{
         alert("deck simple condition is missing");
+        isCorrect=false;
     }
 }
-
-
