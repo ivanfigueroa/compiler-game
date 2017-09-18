@@ -1,9 +1,9 @@
-# Compiler card Game #
+# Compiler cards #
 ------------
 
 ## Descripción ##
-Proyecto generado para la materia de Diseño de Compiladores. Es un compilador que sigue la gramatica descrita en el archivo 
-llamado `gramatica.txt`. 
+Course project for compilers class. A compiler following the gramatic from gramatic.txt
+
 
 ## libraries ##
 - Phaser: https://phaser.io
