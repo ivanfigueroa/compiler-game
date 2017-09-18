@@ -104,7 +104,7 @@ function programa(printMessage){
      alert("class is missing");
   }
   codIntermedio.push(FINAL);
-  var message = "Lo que tiene el stack: \n";
+  var message = "";
   var codeToPrint;
   if(printMessage){
   for(var i = 0 ; i< codIntermedio.length ; i++){
@@ -112,7 +112,7 @@ function programa(printMessage){
      // if(codeToPrint>1000)  codeToPrint= printValue[codeToPrint-1001];
      // else if(codeToPrint==200) codeToPrint= "CONDITIONAL";
      // else if(codeToPrint==201) codeToPrint= "CONDITIONAL";
-      message+=(i + "**"+codeToPrint+"**\n");
+      message+=(codIntermedio[i]+"\n");
   }
   alert(message);
   }

@@ -41,8 +41,20 @@ playGame.prototype = {
         game.scale.pageAlignVertically = true;
     },
     create: function() {
-         game.stage.backgroundColor = "#7A2F36";
-        //game.add.tileSprite(0, 0, 800, 700, 'background');
+        // game.stage.backgroundColor = "#7A2F36";
+        game.add.tileSprite(0, 0, 900, 700, 'background');
+        deck = Phaser.ArrayUtils.numberArray(0, 51); //create array
+        Phaser.ArrayUtils.shuffle(deck);    //randomize order
+        deckXPosition = this.makeXcoordinates(7);
+        deckYPosition = this.makeYcoordinates(8);
+        cardsInGame = this.makeCards();    // initialize 2 cards?
+        nextCardIndex = 51;
+        deckIndex = 1;
+        //game.input.onDown.add(this.beginSwipe, this);
+    },
+    createNew: function(deck) {
+        // game.stage.backgroundColor = "#7A2F36";
+        game.add.tileSprite(0, 0, 900, 700, 'background');
         deck = Phaser.ArrayUtils.numberArray(0, 51); //create array
         Phaser.ArrayUtils.shuffle(deck);    //randomize order
         deckXPosition = this.makeXcoordinates(7);
@@ -221,12 +233,15 @@ playGame.prototype = {
     },
     getCardAnimationRemote: function (indexOfCard) {
         game.world.bringToTop(cardsInGame[deck.indexOf(indexOfCard)]);
+        var tween = game.add.tween(cardsInGame[deck.indexOf(indexOfCard)]).to({
+            x: cardsInGame[deck.indexOf(indexOfCard)].x+50 , y: cardsInGame[deck.indexOf(indexOfCard)].y
+        }, 300, Phaser.Easing.Cubic.Out, true);
         cardsInGame[deck.indexOf(indexOfCard)].scale.set(gameOptions.cardScale*1.2);
     },
     putCardAnimationRemote: function (indexOfCard, indexOfDeck) {
         var tween = game.add.tween(cardsInGame[deck.indexOf(indexOfCard)]).to({
             x: [deckXPosition[indexOfDeck]], y: [deckYPosition[indexOfDeck]]
-        }, 100, Phaser.Easing.Cubic.Out, true);
+        }, 200, Phaser.Easing.Cubic.Out, true);
         tween.onComplete.add(function() {
             cardsInGame[deck.indexOf(indexOfCard)].scale.set(gameOptions.cardScale)
 
@@ -271,14 +286,18 @@ playGame.prototype = {
             cardsInGame[i].y = -200;
         }
     },
-    restart: function () {
-        alert("restarting");
+    restartGameOld: function () {
+        for (var i = 0; i < cardsInGame.length; i++) {
+            cardsInGame[i].x = -200;
+            cardsInGame[i].y = -200;
+        }
         deck = Phaser.ArrayUtils.numberArray(0, 51); //create array
-        Phaser.ArrayUtils.shuffle(deck);    //randomize order
-        this.removeAllCards();
+        Phaser.ArrayUtils.shuffle(deck);
         cardsInGame = this.makeCards();    // initialize 2 cards?
-        nextCardIndex = 51;
-        deckIndex = 1;
     }
 
+}
+
+var restartGame = function (){
+    game.state.start("PlayGame");
 }

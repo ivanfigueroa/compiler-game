@@ -35,15 +35,15 @@
 var currentCard;
 var retStack;
 var decks;
-var isStarted;
+var isStarted=false;
 
 function init(){
     //this.game.state.start("the_state_name");
     //playGame.prototype.restart();
     //game.state.restart();
-    //playGame.prototype.create(currentCard);
+    if(isStarted){game.state.add("Play", playGame)
+    game.state.start("Play");}
 
-    game.state.start("PlayGame");
     isStarted =true;
     currentCard = -1;
     retStack = new Array();
@@ -52,11 +52,13 @@ function init(){
     for(var i = 0; i < 52; i++){
         decks.push(new Array())
     }
-
-    /*for(var i = 0; i < 52; i++){
-        decks[0].push(i);
-    }*/
     decks[0]= deckbueno;
+
+    for(var i = 0; i < 52; i++){
+        console.log(i + " "+ decks[0][i]);
+    }
+    console.log("size of deck: " + decks[0].length );
+
 }
 
 
@@ -329,17 +331,17 @@ function loop (i){
 
             }
             loop (i);
-        }, 1)
+        },100)
 
     }else {
         return;
     }
 }
 
-function execute(){
+function execute(needsProgram){
     var i = 0;
-    programa(false);
-    if(isStarted)game.state.start("PlayGame");
+    if(needsProgram)programa(false);
+    //if(isStarted)game.state.start("PlayGame");
     init();
     loop(i);
 
